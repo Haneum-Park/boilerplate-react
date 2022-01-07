@@ -1,0 +1,27 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@": ".",
+          "@config": "./config",
+          "@src": "./src",
+          "@comp": "./src/components",
+          "@atomic": "./src/components/atomics",
+          "@molecule": "./src/components/molecules",
+          "@organism": "./src/components/organisms",
+          "@page": "./src/pages",
+          "@store": "./src/stores",
+          "@router": "./src/routers",
+          "@hook": "./src/hooks",
+          "@image": "./src/images",
+          "@util": "./src/utils",
+          "@static": "./src/statics"
+        }
+      }
+    ]
+  ]
+}
