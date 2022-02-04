@@ -6,15 +6,20 @@ module.exports = {
     es2020: true,
   },
   parserOptions: {
-    ecmaVersion: 2021,
+    ecmaVersion: 2020,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    sourceType: 'module',
   },
   extends: [
-    'airbnb-base',
+    'eslint:recommended',
     'plugin:jsx-a11y/recommended',
+    'airbnb-base',
+    'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
-    'eslint:recommended',
-    'plugin:react/recommended',
+    'plugin:prettier/recommended',
   ],
   plugins: ['react'],
   rules: {
@@ -41,6 +46,7 @@ module.exports = {
     'no-nested-ternary': 'off',
     'eol-last': 'off',
   },
+  ignorePatterns: ['.eslintrc.js'],
   settings: {
     'import/resolver': {
       node: {
