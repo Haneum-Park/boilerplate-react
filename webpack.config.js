@@ -5,9 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const isProduction = !(
-  (process.env.NODE_ENV || 'development') === 'development'
-);
+const isProduction = !((process.env.NODE_ENV || 'development') === 'development');
 
 const port = isProduction ? 80 : 8000;
 const host = isProduction ? '0.0.0.0' : 'localhost';
@@ -108,9 +106,7 @@ module.exports = {
         argv: JSON.stringify(process.argv),
         env: {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-          mode: JSON.stringify(
-            process.env.mode ? process.env.mode : 'production',
-          ),
+          mode: JSON.stringify(process.env.mode ? process.env.mode : 'production'),
         },
       },
     }),
@@ -125,7 +121,6 @@ module.exports = {
       patterns: [
         { from: './public/robots.txt', to: 'robots.txt' },
         { from: './public/sitemap.xml', to: 'sitemap.xml' },
-        { from: './public/ogImage.png', to: 'ogImage.png' },
       ],
     }),
   ],

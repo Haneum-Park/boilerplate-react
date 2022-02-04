@@ -1,7 +1,6 @@
 {
   "name": "boilerplate-react",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:Haneum-Park/boilerplate-react.git",
   "author": "Haneum-Park <qkrgksdma17@gmail.com>",
   "license": "MIT",
