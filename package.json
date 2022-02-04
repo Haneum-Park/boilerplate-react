@@ -5,6 +5,14 @@
   "repository": "git@github.com:Haneum-Park/boilerplate-react.git",
   "author": "Haneum-Park <qkrgksdma17@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development mode=development webpack serve --config ./webpack.config.js",
+    "dev:prod": "NODE_ENV=development mode=production webpack serve --config ./webpack.config.js",
+    "prod": "NODE_ENV=production webpack serve --config ./webpack.config.js",
+    "build": "NODE_ENV=production webpack build --config ./webpack.config.js",
+    "lint": "eslint './src/**/*.{js,jsx}",
+    "lint:fix": "eslint --fix './src/**/*.{js,jsx}'"
+  },
   "dependencies": {
     "dayjs": "^1.10.7",
     "gatsby-plugin-react-helmet": "^5.4.0",
