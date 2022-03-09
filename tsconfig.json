@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "sourceMap": true,
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "jsx": "react",
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@config/*": ["./config/*"],
+      "@image/*": ["./public/images/*"],
+      "@src/*": ["./src/*"],
+      "@comp/*": ["./src/components/*"],
+      "@store/*": ["./src/stores/*"],
+      "@util/*": ["./src/utils/*"],
+      "@hook/*": ["./src/hooks/*"],
+      "@router/*": ["./src/routers/*"],
+      "@page/*": ["./src/pages/*"],
+      "@constant/*": ["./src/constants/*"]
+    }
+  },
+  "include": [
+    "src/**/*", "public", "config"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@": ".",
+          "@config": "./config",
+          "@image": "./public/images",
+          "@src": "./src",
+          "@comp": "./src/components",
+          "@store": "./src/stores",
+          "@util": "./src/utils",
+          "@hook": "./src/hooks",
+          "@router": "./src/routers",
+          "@page": "./src/pages",
+          "@constant": "./src/constants"
+        }
+      }
+    ]
+  ]
+}
