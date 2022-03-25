@@ -1,25 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-
-const isProduction = !((process.env.NODE_ENV || 'development') === 'development');
-
-const port = isProduction ? 80 : 8000;
-const host = isProduction ? '0.0.0.0' : 'localhost';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
-  entry: ['./src/index.js'],
+  entry: ['./src/index.tsx'],
   output: {
+    path: path.join(__dirname, '/dist'),
     filename: '[name].[chunkhash].js',
-    path: path.join(path.resolve(), '/dist'),
     publicPath: '/',
     clean: true,
   },
-  devtool: 'source-map',
   optimization: {
     runtimeChunk: {
       name: 'runtime',
@@ -63,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         exclude: /node_modules/,
       },
       {
@@ -110,35 +101,9 @@ module.exports = {
         },
       },
     }),
-    new ReactRefreshWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      favicon: './public/favicon.ico',
-    }),
-    new CopyPlugin({
-      patterns: [
-        { from: './public/robots.txt', to: 'robots.txt' },
-        { from: './public/sitemap.xml', to: 'sitemap.xml' },
-      ],
+      template: path.resolve(__dirname, './public/index.html'),
+      favicon: path.resolve(__dirname, './public/favicon.ico'),
     }),
   ],
-  devServer: {
-    host,
-    port,
-    open: true,
-    compress: true,
-    historyApiFallback: true,
-    hot: true,
-    liveReload: true,
-    static: {
-      publicPath: path.join(__dirname, 'dist'),
-      watch: true,
-    },
-    client: {
-      logging: 'log',
-      // progress: true,
-    },
-  },
 };

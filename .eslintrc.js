@@ -13,9 +13,9 @@ module.exports = {
     sourceType: 'module',
   },
   extends: [
+    'airbnb-base',
     'eslint:recommended',
     'plugin:jsx-a11y/recommended',
-    'airbnb-base',
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',

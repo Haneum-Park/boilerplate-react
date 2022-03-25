@@ -5,10 +5,11 @@
   "author": "Haneum-Park <qkrgksdma17@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development mode=development webpack serve --config ./webpack.config.js",
-    "dev:prod": "cross-env NODE_ENV=development mode=production webpack serve --config ./webpack.config.js",
-    "prod": "cross-env NODE_ENV=production webpack serve --config ./webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack build --config ./webpack.config.js",
+    "prerender": "react-snap",
+    "dev": "cross-env NODE_ENV=development mode=development webpack serve --config ./webpack.dev.js",
+    "dev:prod": "cross-env NODE_ENV=development mode=production webpack serve --config ./webpack.dev.js",
+    "prod": "cross-env NODE_ENV=production webpack serve --config ./webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack build --config ./webpack.prod.js",
     "lint": "eslint './src/**/*.{js,jsx}",
     "lint:fix": "eslint --fix './src/**/*.{js,jsx}'"
   },
@@ -26,10 +27,9 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
     "@babel/preset-env": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@webpack-cli/serve": "1.5.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-module-resolver": "^4.1.0",
@@ -47,13 +47,16 @@
     "file-loader": "^6.2.0",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "node-sass": "^7.0.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "prettier": "^2.5.1",
-    "react-refresh": "^0.11.0",
+    "react-snap": "^1.23.0",
     "sass-loader": "^12.4.0",
-    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
     "webpack": "5.64.3",
     "webpack-cli": "4.9.1",
-    "webpack-dev-server": "4.5.0"
+    "webpack-dev-server": "4.5.0",
+    "webpack-merge": "^5.8.0"
   }
 }
