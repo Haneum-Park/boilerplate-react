@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const isProduction = !((process.env.NODE_ENV || 'development') === 'development');
 
-const port = isProduction ? 80 : 8000;
+const port = isProduction ? 80 : process.env.PORT || 8000;
 const host = isProduction ? '0.0.0.0' : 'localhost';
 
 module.exports = {
