@@ -1,18 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { HelmetProvider } from 'react-helmet-async';
-import { store } from '@store/index';
+import ReactDOM from 'react-dom/client';
 
-import ROOT from '@router/index';
+import App from '@router/index';
 
-ReactDOM.render(
+import { GlobalFontStyle, GlobalColorStyle, GlobalCommonStyle } from '@router/globalStyle';
+
+const rootNode = document.getElementById('root');
+
+const root = ReactDOM.createRoot(rootNode as Element | DocumentFragment);
+
+root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <HelmetProvider>
-        <ROOT />
-      </HelmetProvider>
-    </Provider>
+    <GlobalFontStyle />
+    <GlobalColorStyle />
+    <GlobalCommonStyle />
+    <App />
   </React.StrictMode>,
-  document.getElementById('root'),
 );

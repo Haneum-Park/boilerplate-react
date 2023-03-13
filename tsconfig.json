@@ -1,14 +1,8 @@
 {
   "compilerOptions": {
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
-    "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "target": "ES5",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
     "allowJs": true,
     "checkJs": false,
@@ -30,25 +24,22 @@
     "noEmit": true,
     "jsx": "react",
     "isolatedModules": true,
+    "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@config/*": ["./config/*"],
-      "@image/*": ["./public/images/*"],
+      "@public/*": ["./public/*"],
       "@src/*": ["./src/*"],
       "@comp/*": ["./src/components/*"],
+      "@atom/*": ["./src/components/atoms/*"],
+      "@block/*": ["./src/components/blocks/*"],
+      "@page/*": ["./src/components/pages/*"],
       "@store/*": ["./src/stores/*"],
-      "@util/*": ["./src/utils/*"],
-      "@hook/*": ["./src/hooks/*"],
       "@router/*": ["./src/routers/*"],
-      "@page/*": ["./src/pages/*"],
-      "@constant/*": ["./src/constants/*"]
+      "@hook/*": ["./src/hooks/*"],
+      "@util/*": ["./src/utils/*"]
     }
   },
-  "include": [
-    "src/**/*", "public", "config"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*", "public"],
+  "exclude": ["node_modules"]
 }

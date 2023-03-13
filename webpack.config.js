@@ -1,37 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const uglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
-// typescript
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-
-const isProduction = !(
-  (process.env.NODE_ENV || 'development') === 'development'
-);
-
-if (process.env.mode === 'development') console.log('개발모드입니다. d-ocean-back을 켜두시기 바랍니다.');
-
-const port = isProduction ? 80 : 8000;
-const host = isProduction ? '0.0.0.0' : 'localhost';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
-  entry: './src/index.tsx',
+  entry: ['./src/index.tsx'],
   output: {
-    filename: '[name].[chunkhash].js',
     path: path.join(__dirname, '/dist'),
+    filename: '[name].[chunkhash].js',
     publicPath: '/',
     clean: true,
   },
-  devtool: 'source-map',
   optimization: {
+    runtimeChunk: {
+      name: 'runtime',
+    },
     splitChunks: {
       cacheGroups: {
-        vendors: {
+        commons: {
           test: /[\\/]node_modules[\\/]/,
-          // cacheGroupKey here is `commons` as the key of the cacheGroup
           name: 'vendors',
           chunks: 'all',
         },
@@ -55,53 +42,63 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: 'html-loader',
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         exclude: /node_modules/,
       },
       {
-        test: /\.()$/,
+        test: /\.(png|jpg|jpeg|gif|pdf|ico|svg|)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            publicPath: './dist',
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              fallback: 'file-loader',
+            },
           },
-        },
+        ],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|pdf|ico)$/,
+        test: /\.(woff2|woff2|ttf|otf|eot)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            name: '[name].[ext]?[hash]',
-            publicPath: './dist/',
-            limit: 10000,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              fallback: 'file-loader',
+            },
           },
-        },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.txt'],
     modules: [path.resolve(__dirname, '.'), 'node_modules'],
     alias: {
-      '@': path.resolve(__dirname, './'),
-      '@config': path.resolve(__dirname, 'config/'),
-      '@image': path.resolve(__dirname, 'src/public/images/'),
-      '@src': path.resolve(__dirname, 'src/'),
-      '@comp': path.resolve(__dirname, 'src/components/'),
-      '@store': path.resolve(__dirname, 'src/stores/'),
-      '@util': path.resolve(__dirname, 'src/utils/'),
-      '@hook': path.resolve(__dirname, 'src/hooks/'),
-      '@router': path.resolve(__dirname, 'src/routers/'),
-      '@page': path.resolve(__dirname, 'src/pages/'),
-      '@constant': path.resolve(__dirname, 'src/constants/'),
+      '@': path.resolve(__dirname, '.'),
+      '@public': path.resolve(__dirname, 'public'),
+      '@src': path.resolve(__dirname, 'src'),
+      '@comp': path.resolve(__dirname, 'src/components'),
+      '@atom': path.resolve(__dirname, 'src/components/atoms'),
+      '@block': path.resolve(__dirname, 'src/components/blocks'),
+      '@page': path.resolve(__dirname, 'src/components/pages'),
+      '@store': path.resolve(__dirname, 'src/stores'),
+      '@router': path.resolve(__dirname, 'src/routers'),
+      '@hook': path.resolve(__dirname, 'src/hooks'),
+      '@util': path.resolve(__dirname, 'src/utils'),
     },
   },
   plugins: [
@@ -110,50 +107,12 @@ module.exports = {
         argv: JSON.stringify(process.argv),
         env: {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-          mode: JSON.stringify(process.env.mode ? process.env.mode : 'production'),
         },
       },
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin({
-      cleanAfterEveryBuildPatterns: ['dist'],
-    }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      // favicon: './public/favicon.ico',
+      template: path.resolve(__dirname, './public/index.html'),
+      favicon: path.resolve(__dirname, './public/favicon.ico'),
     }),
-    new ForkTsCheckerWebpackPlugin(),
-    // new CopyPlugin({
-    //   patterns: [
-    //     { from: './public/robots.txt', to: 'robots.txt' },
-    //     { from: './public/sitemap.xml', to: 'sitemap.xml' },
-    //     { from: './public/ogImage.png', to: 'ogImage.png' },
-    //   ],
-    // }),
   ],
-  devServer: {
-    host,
-    port,
-    open: true,
-    compress: true,
-    historyApiFallback: true,
-    hot: true,
-    liveReload: true,
-    static: {
-      publicPath: path.join(__dirname, 'dist'),
-      watch: true,
-    },
-    client: {
-      logging: 'log',
-      // progress: true,
-    },
-  },
 };
-
-if (isProduction) {
-  module.exports.plugins.push(new uglifyjsWebpackPlugin({
-    cache: true,
-    parallel: true,
-    sourceMap: true,
-  }));
-}
