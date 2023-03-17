@@ -51,7 +51,7 @@ export function validateToken(key = 'accessToken'): boolean {
   if (iat > exp) return false;
 
   // ? token issuer check
-  const issuer = 'monit.metu.ai';
+  const issuer = 'prod-url.com';
   if (iss !== issuer) return false;
 
   return true;

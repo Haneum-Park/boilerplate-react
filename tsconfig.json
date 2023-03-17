@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "useDefineForClassFields": true,
     "target": "ES5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
@@ -37,9 +38,11 @@
       "@store/*": ["./src/stores/*"],
       "@router/*": ["./src/routers/*"],
       "@hook/*": ["./src/hooks/*"],
-      "@util/*": ["./src/utils/*"]
+      "@util/*": ["./src/utils/*"],
+      "@const/*": ["./src/consts/*"]
     }
   },
   "include": ["src/**/*", "public"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

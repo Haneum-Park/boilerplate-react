@@ -1,16 +1,24 @@
 import React from 'react';
 
+import Index from '@page/index';
+
 type Router = {
   path: string;
-  component: React.FC;
+  comp: React.FC;
   key: string;
-  child?: {
-    childPath: string;
-    childComp: React.FC;
-    childKey: string;
+  childs?: {
+    path: string;
+    comp: React.FC;
+    key: string;
   }[];
 };
 
-const routers: Router[] = [];
+const routers: Router[] = [
+  {
+    path: '/',
+    comp: Index,
+    key: 'index',
+  },
+];
 
 export default routers;
