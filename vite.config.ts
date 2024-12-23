@@ -1,10 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import path from 'path';
+import { resolve } from 'path';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    plugins: [["@swc/plugin-styled-components", {}]]
+  })],
   publicDir: 'public',
   server: {
     port: 8080,
@@ -17,19 +18,19 @@ export default defineConfig({
     emptyOutDir: true,
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, '.'),
-      '@public': path.resolve(__dirname, 'public'),
-      '@src': path.resolve(__dirname, 'src'),
-      '@comp': path.resolve(__dirname, 'src/components'),
-      '@atom': path.resolve(__dirname, 'src/components/atoms'),
-      '@block': path.resolve(__dirname, 'src/components/blocks'),
-      '@page': path.resolve(__dirname, 'src/components/pages'),
-      '@store': path.resolve(__dirname, 'src/stores'),
-      '@router': path.resolve(__dirname, 'src/routers'),
-      '@hook': path.resolve(__dirname, 'src/hooks'),
-      '@util': path.resolve(__dirname, 'src/utils'),
-      '@const': path.resolve(__dirname, 'src/consts'),
-    },
+    alias: [
+      { find: '@', replacement: resolve(__dirname, '.')},
+      { find: '@public', replacement: resolve(__dirname, 'public')},
+      { find: '@src', replacement: resolve(__dirname, 'src')},
+      { find: '@comp', replacement: resolve(__dirname, 'src/components')},
+      { find: '@atom', replacement: resolve(__dirname, 'src/components/atoms')},
+      { find: '@block', replacement: resolve(__dirname, 'src/components/blocks')},
+      { find: '@page', replacement: resolve(__dirname, 'src/components/pages')},
+      { find: '@store', replacement: resolve(__dirname, 'src/stores')},
+      { find: '@router', replacement: resolve(__dirname, 'src/routers')},
+      { find: '@hook', replacement: resolve(__dirname, 'src/hooks')},
+      { find: '@util', replacement: resolve(__dirname, 'src/utils')},
+      { find: '@const', replacement: resolve(__dirname, 'src/consts')},
+    ]
   },
 });

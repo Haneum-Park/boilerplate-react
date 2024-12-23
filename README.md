@@ -37,17 +37,17 @@ Presentational and Container 방식을 구현해 prop가 비대해지는걸 방�
   <div style="display: flex; align-items: center">
     <code>Framework</code>
     &nbsp;:&nbsp;
-    <img src="https://img.shields.io/badge/react-v18.2.0-61DAFB?logo=React" />
+    <img src="https://img.shields.io/badge/react-v19.0.0-61DAFB?logo=React" />
   </div>
   <div style="display: flex; align-items: center">
     <code>State Manage</code>
     &nbsp;:&nbsp;
-    <img src="https://img.shields.io/badge/valtio-v1.6.4-171717?logo=V&logoColor=171717"/>
+    <img src="https://img.shields.io/badge/jotai-v2.11.0-171717?logo=Jotai"/>
   </div>
   <div style="display: flex; align-items: center">
     <code>Bundler</code>
     &nbsp;:&nbsp;
-    <img src="https://img.shields.io/badge/vite-v4.1.4-646CFF?logo=Vite" />
+    <img src="https://img.shields.io/badge/vite-v6.0.5-646CFF?logo=Vite" />
   </div>
   <div style="display: flex; align-items: center">
     <code>Compiler</code>

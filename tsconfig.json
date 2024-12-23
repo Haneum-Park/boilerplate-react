@@ -2,7 +2,7 @@
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "useDefineForClassFields": true,
-    "target": "ES5",
+    "target": "ES2020",
     "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": true,
     "allowJs": true,
@@ -23,7 +23,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "isolatedModules": true,
     "noImplicitAny": false,
     "baseUrl": ".",

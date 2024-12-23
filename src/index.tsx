@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
 import App from '@router/index';
 
-import { GlobalFontStyle, GlobalColorStyle, GlobalCommonStyle } from '@router/globalStyle';
+import { GlobalFontStyle, GlobalColorStyle, GlobalCommonStyle } from '@const/globalStyle';
 
 const rootNode = document.getElementById('root');
 
-const root = ReactDOM.createRoot(rootNode as Element | DocumentFragment);
+const root = createRoot(rootNode as Element | DocumentFragment);
 
 root.render(
   <React.StrictMode>

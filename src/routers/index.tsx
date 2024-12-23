@@ -2,7 +2,7 @@
 import React, { memo } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Layout from '@block/common/Layout';
+import Layout from '@block/Layout';
 
 import routers from './index.router';
 

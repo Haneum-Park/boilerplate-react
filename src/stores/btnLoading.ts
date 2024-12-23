@@ -1,11 +1,3 @@
-import { proxy } from 'valtio';
+import { atom } from 'jotai';
 
-interface ProxyBtnLoad {
-  isLoading: boolean;
-}
-
-export const proxyBtnLoad = proxy<ProxyBtnLoad>({ isLoading: false });
-
-export function clearBtnLoad() {
-  proxyBtnLoad.isLoading = false;
-}
+export const btnLoading = atom<boolean>(false);

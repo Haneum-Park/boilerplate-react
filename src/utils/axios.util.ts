@@ -23,11 +23,7 @@ const $axios = axios.create({
 $axios.interceptors.request.use(async (config: AxiosRequestConfig) => {
   config.baseURL = baseUrl;
   const { url, method } = config;
-  if (
-    requireApiList.findIndex(
-      (api) => (url as string).indexOf(api.url) > -1 && api.method === method,
-    ) > -1
-  ) {
+  if (requireApiList.findIndex((api) => (url as string).indexOf(api.url) > -1 && api.method === method) > -1) {
     if (validateToken()) {
       const token = cookies.get('accessToken');
       if (!token) return Promise.reject(new Error('You need to Login'));
