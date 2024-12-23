@@ -41,5 +41,5 @@
     }
   },
   "include": ["src/**/*", "public"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "README.md"]
 }

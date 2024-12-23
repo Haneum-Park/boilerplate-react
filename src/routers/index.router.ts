@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Root from '@page/index';
+
 type Router = {
   path: string;
   component: React.FC;
@@ -11,6 +13,13 @@ type Router = {
   }[];
 };
 
-const routers: Router[] = [];
+const routers: Router[] = [
+  {
+    path: '/',
+    component: Root,
+    key: 'root',
+    child: [],
+  },
+];
 
 export default routers;

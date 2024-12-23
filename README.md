@@ -4,7 +4,6 @@
   <img src="https://img.shields.io/badge/yarn-v1.22.18-2C8EBB?logo=Yarn" />
 </div>
 
----
 
 ## Component Design Pattern
 
@@ -12,9 +11,6 @@
 - `Atomic (Atom - Molecule - Organism - Template - Page)`
   - 기존 `Atomic` 디자인 패턴에서 `Molecule`, `Organism`, `Template`을 제거하고 `Block` 단위를 추가해 적용
   - `Proxy` 상태관리를 사용하여 `props drilling`을 방지
-- `Presentational and Container Components`
-  - `Presentational Components` : UI를 담당하는 컴포넌트
-  - `Container Components` : `Presentational Components`를 감싸고 데이터를 주입하는 컴포넌트
 
 ```text plain
 요약하여 설명하면 Input, Image 등 가장 작은 단위부터 Page까지 올라가고
@@ -59,3 +55,27 @@ Presentational and Container 방식을 구현해 prop가 비대해지는걸 방�
     <a style="display: flex; align-items: center" href="https://www.npmjs.com/package/@babel/core"><img src="https://img.shields.io/badge/babel-v7.18.10-F9DC3E?logo=Babel" /></a>
   </div>
 </div>
+
+
+## Commit Policy
+
+- `git commit -m "[TYPE]: MESSAGE"`
+  - `TYPE`은 아래와 같이 작성하고 그 의미를 둔다.
+    - `INIT`: 초기 환경 설정
+    - `FEAT`: 새로운 기능, 페이지, 컴포넌트 등의 추가
+    - `FIX`: 버그 수정
+    - `CHORE`: 문서 추가/수정, 빌드 업무 수정, 패키지 매니저 수정, 환경 설정 수정 등
+    - `REFACT`: 코드 리팩토링, 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 수정 등
+  - `MESSAGE`는 _**최대 100자 이내**_ 이해가 될 정도로 _**간결하게 작성**_ 할 것.
+- 여러 `TYPE`이 동시에 해당되는 경우, 가장 중요한 `TYPE`을 선택하여 작성할 것.
+  - 단, 구분이 필요한 경우 commit을 분리하여 작성할 것.
+  - 예를 들어, FEAT와 FIX 커밋을 할 파일이 섞여 있는 경우 파일이 같다면 하나의 커밋으로 FEAT TYPE으로 작성하고 다르다면 분리하여 작성
+- 커밋 내용이 길어질 경우에 git commit으로 여러줄을 작성. 단, 첫 줄은 반드시 정책을 따를 것.
+- Example
+  ```bash
+    git commit -m "[FEAT]: Added login component"
+    git commit -m "[FIX]: Fixed register validate"
+    git commit -m "[CHORE]: Changed webpack config"
+    git commit -m "[REFACT]: login component"
+    git commit -m "[INIT]"
+  ```

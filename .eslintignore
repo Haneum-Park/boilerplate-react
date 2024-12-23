@@ -3,3 +3,4 @@ webpack.*.js
 .eslintrc.js
 .tsconfig.json
 server.js
+README.md
